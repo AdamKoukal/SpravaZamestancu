@@ -12,6 +12,7 @@ export default function Login()
                     <Input marginBottom="15px" placeholder="Erwin.Young@gmail.com" />
                     <PasswordInput  placeholder="Aw8asd4as5!"/>
                     <Button marginTop="15px">Login</Button>
+                    <Button marginTop="15px">Login</Button>
                 </Box>
             </AbsoluteCenter>
 
