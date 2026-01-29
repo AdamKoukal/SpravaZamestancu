@@ -10,7 +10,7 @@ export default function Home()
     {
       console.log("a");
       const{data, error}= await supabase.from("TEST").insert({Name:"t2"});
-    console.log(error);
+      console.log(error);
       if(data) console.log(data);
       if(error) console.log(error);
     };
