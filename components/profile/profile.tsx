@@ -1,6 +1,5 @@
 "use client"
 
-import { useSearchParams } from "next/navigation";
 import { useState } from "react"
 
 
@@ -11,17 +10,12 @@ type ProfileProps = {
   position: string;
   birth_date:string;
 };
-import dynamic from 'next/dynamic'
+
  
-const DynamicComponentWithNoSSR = dynamic(
-   { ssr: false }
-)
+
  
 export default function Profile({props}:any)
 {
-    console.log("asdasa");
-    const searchParams = useSearchParams()
-    
     const  [user,setUser]=useState({});
 
     const  [editing,setEditing]=useState(false);
