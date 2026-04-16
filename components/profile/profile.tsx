@@ -11,7 +11,13 @@ type ProfileProps = {
   position: string;
   birth_date:string;
 };
-export const dynamic = "force-dynamic";
+import dynamic from 'next/dynamic'
+ 
+const DynamicComponentWithNoSSR = dynamic(
+  
+  { ssr: false }
+)
+ 
 export default function Profile({props}:any)
 {
     
