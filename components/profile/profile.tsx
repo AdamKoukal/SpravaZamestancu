@@ -19,7 +19,7 @@ const DynamicComponentWithNoSSR = dynamic(
  
 export default function Profile({props}:any)
 {
-    console.log("asdas");
+    console.log("asdasa");
     const searchParams = useSearchParams()
     
     const  [user,setUser]=useState({});
