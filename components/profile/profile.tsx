@@ -1,6 +1,5 @@
 "use client"
 
-import { useSearchParams } from "next/navigation";
 import { useState } from "react"
 
 
@@ -14,7 +13,6 @@ type ProfileProps = {
 export default function Profile({props}:any)
 {
     
-    const searchParams = useSearchParams()
     
     const  [user,setUser]=useState({});
 
