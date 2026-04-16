@@ -14,13 +14,12 @@ type ProfileProps = {
 import dynamic from 'next/dynamic'
  
 const DynamicComponentWithNoSSR = dynamic(
-  
-  { ssr: false }
+   { ssr: false }
 )
  
 export default function Profile({props}:any)
 {
-    
+    console.log("asdas");
     const searchParams = useSearchParams()
     
     const  [user,setUser]=useState({});
