@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchParams } from "next/navigation";
 import { useState } from "react"
 
 
@@ -10,9 +11,11 @@ type ProfileProps = {
   position: string;
   birth_date:string;
 };
+export const dynamic = "force-dynamic";
 export default function Profile({props}:any)
 {
     
+    const searchParams = useSearchParams()
     
     const  [user,setUser]=useState({});
 
