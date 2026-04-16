@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Users {
+  first_name      String
+  last_name       String
+  email           String    @unique
+  birth_date      DateTime  @db.Date
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @db.Timestamp(6)
+  role            String?   @default("user")
+  profile_picture String?
+  banner          String?
+  id              String    @id @default(uuid()) @db.Uuid
+  salary          Int?      @db.SmallInt
+  password        String
+}
