@@ -1,4 +1,4 @@
-"use server"
+/*"use server"
 import { PrismaClient } from './app/generated/prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { supabase } from "./app/lib/supabase";
@@ -58,4 +58,4 @@ export async function getCurrentUser() {
   })
   return dbUser
 
-}
+}*/
