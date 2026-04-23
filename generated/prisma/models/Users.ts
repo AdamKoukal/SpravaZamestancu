@@ -31,7 +31,7 @@ export type UsersAvgAggregateOutputType = {
 }
 
 export type UsersSumAggregateOutputType = {
-  salary: number | null
+  salary: bigint | null
 }
 
 export type UsersMinAggregateOutputType = {
@@ -41,11 +41,11 @@ export type UsersMinAggregateOutputType = {
   birth_date: Date | null
   created_at: Date | null
   updated_at: Date | null
-  role: string | null
+  position: string | null
   profile_picture: string | null
   banner: string | null
   id: string | null
-  salary: number | null
+  salary: bigint | null
   password: string | null
 }
 
@@ -56,11 +56,11 @@ export type UsersMaxAggregateOutputType = {
   birth_date: Date | null
   created_at: Date | null
   updated_at: Date | null
-  role: string | null
+  position: string | null
   profile_picture: string | null
   banner: string | null
   id: string | null
-  salary: number | null
+  salary: bigint | null
   password: string | null
 }
 
@@ -71,7 +71,7 @@ export type UsersCountAggregateOutputType = {
   birth_date: number
   created_at: number
   updated_at: number
-  role: number
+  position: number
   profile_picture: number
   banner: number
   id: number
@@ -96,7 +96,7 @@ export type UsersMinAggregateInputType = {
   birth_date?: true
   created_at?: true
   updated_at?: true
-  role?: true
+  position?: true
   profile_picture?: true
   banner?: true
   id?: true
@@ -111,7 +111,7 @@ export type UsersMaxAggregateInputType = {
   birth_date?: true
   created_at?: true
   updated_at?: true
-  role?: true
+  position?: true
   profile_picture?: true
   banner?: true
   id?: true
@@ -126,7 +126,7 @@ export type UsersCountAggregateInputType = {
   birth_date?: true
   created_at?: true
   updated_at?: true
-  role?: true
+  position?: true
   profile_picture?: true
   banner?: true
   id?: true
@@ -228,11 +228,11 @@ export type UsersGroupByOutputType = {
   birth_date: Date
   created_at: Date
   updated_at: Date | null
-  role: string | null
+  position: string | null
   profile_picture: string | null
   banner: string | null
   id: string
-  salary: number | null
+  salary: bigint | null
   password: string
   _count: UsersCountAggregateOutputType | null
   _avg: UsersAvgAggregateOutputType | null
@@ -266,11 +266,11 @@ export type UsersWhereInput = {
   birth_date?: Prisma.DateTimeFilter<"Users"> | Date | string
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"Users"> | Date | string | null
-  role?: Prisma.StringNullableFilter<"Users"> | string | null
+  position?: Prisma.StringNullableFilter<"Users"> | string | null
   profile_picture?: Prisma.StringNullableFilter<"Users"> | string | null
   banner?: Prisma.StringNullableFilter<"Users"> | string | null
   id?: Prisma.UuidFilter<"Users"> | string
-  salary?: Prisma.IntNullableFilter<"Users"> | number | null
+  salary?: Prisma.BigIntNullableFilter<"Users"> | bigint | number | null
   password?: Prisma.StringFilter<"Users"> | string
 }
 
@@ -281,7 +281,7 @@ export type UsersOrderByWithRelationInput = {
   birth_date?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  position?: Prisma.SortOrderInput | Prisma.SortOrder
   profile_picture?: Prisma.SortOrderInput | Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
@@ -300,10 +300,10 @@ export type UsersWhereUniqueInput = Prisma.AtLeast<{
   birth_date?: Prisma.DateTimeFilter<"Users"> | Date | string
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"Users"> | Date | string | null
-  role?: Prisma.StringNullableFilter<"Users"> | string | null
+  position?: Prisma.StringNullableFilter<"Users"> | string | null
   profile_picture?: Prisma.StringNullableFilter<"Users"> | string | null
   banner?: Prisma.StringNullableFilter<"Users"> | string | null
-  salary?: Prisma.IntNullableFilter<"Users"> | number | null
+  salary?: Prisma.BigIntNullableFilter<"Users"> | bigint | number | null
   password?: Prisma.StringFilter<"Users"> | string
 }, "id" | "email">
 
@@ -314,7 +314,7 @@ export type UsersOrderByWithAggregationInput = {
   birth_date?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  position?: Prisma.SortOrderInput | Prisma.SortOrder
   profile_picture?: Prisma.SortOrderInput | Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
@@ -337,11 +337,11 @@ export type UsersScalarWhereWithAggregatesInput = {
   birth_date?: Prisma.DateTimeWithAggregatesFilter<"Users"> | Date | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
-  role?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
+  position?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   profile_picture?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   banner?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"Users"> | string
-  salary?: Prisma.IntNullableWithAggregatesFilter<"Users"> | number | null
+  salary?: Prisma.BigIntNullableWithAggregatesFilter<"Users"> | bigint | number | null
   password?: Prisma.StringWithAggregatesFilter<"Users"> | string
 }
 
@@ -352,11 +352,11 @@ export type UsersCreateInput = {
   birth_date: Date | string
   created_at?: Date | string
   updated_at?: Date | string | null
-  role?: string | null
+  position?: string | null
   profile_picture?: string | null
   banner?: string | null
   id?: string
-  salary?: number | null
+  salary?: bigint | number | null
   password: string
 }
 
@@ -367,11 +367,11 @@ export type UsersUncheckedCreateInput = {
   birth_date: Date | string
   created_at?: Date | string
   updated_at?: Date | string | null
-  role?: string | null
+  position?: string | null
   profile_picture?: string | null
   banner?: string | null
   id?: string
-  salary?: number | null
+  salary?: bigint | number | null
   password: string
 }
 
@@ -382,11 +382,11 @@ export type UsersUpdateInput = {
   birth_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -397,11 +397,11 @@ export type UsersUncheckedUpdateInput = {
   birth_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -412,11 +412,11 @@ export type UsersCreateManyInput = {
   birth_date: Date | string
   created_at?: Date | string
   updated_at?: Date | string | null
-  role?: string | null
+  position?: string | null
   profile_picture?: string | null
   banner?: string | null
   id?: string
-  salary?: number | null
+  salary?: bigint | number | null
   password: string
 }
 
@@ -427,11 +427,11 @@ export type UsersUpdateManyMutationInput = {
   birth_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -442,11 +442,11 @@ export type UsersUncheckedUpdateManyInput = {
   birth_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  salary?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -457,7 +457,7 @@ export type UsersCountOrderByAggregateInput = {
   birth_date?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
@@ -476,7 +476,7 @@ export type UsersMaxOrderByAggregateInput = {
   birth_date?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
@@ -491,7 +491,7 @@ export type UsersMinOrderByAggregateInput = {
   birth_date?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  role?: Prisma.SortOrder
+  position?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
@@ -519,12 +519,12 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 
@@ -536,7 +536,7 @@ export type UsersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   birth_date?: boolean
   created_at?: boolean
   updated_at?: boolean
-  role?: boolean
+  position?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
@@ -551,7 +551,7 @@ export type UsersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   birth_date?: boolean
   created_at?: boolean
   updated_at?: boolean
-  role?: boolean
+  position?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
@@ -566,7 +566,7 @@ export type UsersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   birth_date?: boolean
   created_at?: boolean
   updated_at?: boolean
-  role?: boolean
+  position?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
@@ -581,7 +581,7 @@ export type UsersSelectScalar = {
   birth_date?: boolean
   created_at?: boolean
   updated_at?: boolean
-  role?: boolean
+  position?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
@@ -589,7 +589,7 @@ export type UsersSelectScalar = {
   password?: boolean
 }
 
-export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"first_name" | "last_name" | "email" | "birth_date" | "created_at" | "updated_at" | "role" | "profile_picture" | "banner" | "id" | "salary" | "password", ExtArgs["result"]["users"]>
+export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"first_name" | "last_name" | "email" | "birth_date" | "created_at" | "updated_at" | "position" | "profile_picture" | "banner" | "id" | "salary" | "password", ExtArgs["result"]["users"]>
 
 export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Users"
@@ -601,11 +601,11 @@ export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     birth_date: Date
     created_at: Date
     updated_at: Date | null
-    role: string | null
+    position: string | null
     profile_picture: string | null
     banner: string | null
     id: string
-    salary: number | null
+    salary: bigint | null
     password: string
   }, ExtArgs["result"]["users"]>
   composites: {}
@@ -1036,11 +1036,11 @@ export interface UsersFieldRefs {
   readonly birth_date: Prisma.FieldRef<"Users", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"Users", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Users", 'DateTime'>
-  readonly role: Prisma.FieldRef<"Users", 'String'>
+  readonly position: Prisma.FieldRef<"Users", 'String'>
   readonly profile_picture: Prisma.FieldRef<"Users", 'String'>
   readonly banner: Prisma.FieldRef<"Users", 'String'>
   readonly id: Prisma.FieldRef<"Users", 'String'>
-  readonly salary: Prisma.FieldRef<"Users", 'Int'>
+  readonly salary: Prisma.FieldRef<"Users", 'BigInt'>
   readonly password: Prisma.FieldRef<"Users", 'String'>
 }
     

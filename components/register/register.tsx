@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from "next/navigation"
 import registerUser from '@/models/registerUser';
+import { useSession } from 'next-auth/react';
 
 export default function Register()
 {
+    
     const router = useRouter();
     
     const [first_name, setFirstName]=useState("")

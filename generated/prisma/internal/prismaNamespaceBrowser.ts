@@ -77,7 +77,7 @@ export const UsersScalarFieldEnum = {
   birth_date: 'birth_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  role: 'role',
+  position: 'position',
   profile_picture: 'profile_picture',
   banner: 'banner',
   id: 'id',

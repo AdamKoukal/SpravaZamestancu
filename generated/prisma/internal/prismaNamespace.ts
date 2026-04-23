@@ -524,7 +524,7 @@ export const UsersScalarFieldEnum = {
   birth_date: 'birth_date',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  role: 'role',
+  position: 'position',
   profile_picture: 'profile_picture',
   banner: 'banner',
   id: 'id',
@@ -590,6 +590,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt'
+ */
+export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt[]'
+ */
+export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
     
 
 

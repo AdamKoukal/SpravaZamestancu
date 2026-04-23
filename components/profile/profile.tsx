@@ -59,7 +59,7 @@ export default function Profile({props}:any)
     <h2 className="ml-45 mt-3 text-2xl">Last Name: {props.last_name}</h2>
     <h2 className="ml-45 mt-3 text-2xl">Salary: {props.salary}</h2>
     <h2 className="ml-45 mt-3 text-2xl">Position: {props.position}</h2>
-    <h2 className="ml-45 mt-3 text-2xl">Day Of Birth: {props.birth_date}</h2>
+    <h2 className="ml-45 mt-3 text-2xl">Day Of Birth: {props.birth_date.toLocaleDateString("cs-CZ")}</h2>
     
     
     
