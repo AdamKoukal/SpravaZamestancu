@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { auth, signOut } from "@/auth";
+import { SessionProvider } from "next-auth/react";
+import Header from "@/components/header/header";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,26 +26,16 @@ export default async function RootLayout({
 }>) {
   const session=await auth();
   return (
+     <SessionProvider>
     <html lang="en" suppressHydrationWarning>
       <body
       
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {session?.user ?
-        (<><h1>{session?.user?.email}</h1>
-        <form action={async ()=>
-          {
-            "use server"
-            await signOut();
-          }}>
-          <button type="submit">Log out</button>
-        </form>
-          </>
-        )
-        :
-        (<h1>Not logged in</h1>)}
+        <Header/>
         {children}
       </body>
     </html>
+    </SessionProvider>
   );
 }

@@ -42,11 +42,15 @@ export type UsersMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   position: string | null
+  valid: boolean | null
   profile_picture: string | null
   banner: string | null
   id: string | null
   salary: bigint | null
   password: string | null
+  nationality: string | null
+  address: string | null
+  filled: boolean | null
 }
 
 export type UsersMaxAggregateOutputType = {
@@ -57,11 +61,15 @@ export type UsersMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   position: string | null
+  valid: boolean | null
   profile_picture: string | null
   banner: string | null
   id: string | null
   salary: bigint | null
   password: string | null
+  nationality: string | null
+  address: string | null
+  filled: boolean | null
 }
 
 export type UsersCountAggregateOutputType = {
@@ -72,11 +80,15 @@ export type UsersCountAggregateOutputType = {
   created_at: number
   updated_at: number
   position: number
+  valid: number
   profile_picture: number
   banner: number
   id: number
   salary: number
   password: number
+  nationality: number
+  address: number
+  filled: number
   _all: number
 }
 
@@ -97,11 +109,15 @@ export type UsersMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   position?: true
+  valid?: true
   profile_picture?: true
   banner?: true
   id?: true
   salary?: true
   password?: true
+  nationality?: true
+  address?: true
+  filled?: true
 }
 
 export type UsersMaxAggregateInputType = {
@@ -112,11 +128,15 @@ export type UsersMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   position?: true
+  valid?: true
   profile_picture?: true
   banner?: true
   id?: true
   salary?: true
   password?: true
+  nationality?: true
+  address?: true
+  filled?: true
 }
 
 export type UsersCountAggregateInputType = {
@@ -127,11 +147,15 @@ export type UsersCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   position?: true
+  valid?: true
   profile_picture?: true
   banner?: true
   id?: true
   salary?: true
   password?: true
+  nationality?: true
+  address?: true
+  filled?: true
   _all?: true
 }
 
@@ -229,11 +253,15 @@ export type UsersGroupByOutputType = {
   created_at: Date
   updated_at: Date | null
   position: string | null
+  valid: boolean
   profile_picture: string | null
   banner: string | null
   id: string
   salary: bigint | null
-  password: string
+  password: string | null
+  nationality: string | null
+  address: string | null
+  filled: boolean
   _count: UsersCountAggregateOutputType | null
   _avg: UsersAvgAggregateOutputType | null
   _sum: UsersSumAggregateOutputType | null
@@ -267,11 +295,15 @@ export type UsersWhereInput = {
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"Users"> | Date | string | null
   position?: Prisma.StringNullableFilter<"Users"> | string | null
+  valid?: Prisma.BoolFilter<"Users"> | boolean
   profile_picture?: Prisma.StringNullableFilter<"Users"> | string | null
   banner?: Prisma.StringNullableFilter<"Users"> | string | null
   id?: Prisma.UuidFilter<"Users"> | string
   salary?: Prisma.BigIntNullableFilter<"Users"> | bigint | number | null
-  password?: Prisma.StringFilter<"Users"> | string
+  password?: Prisma.StringNullableFilter<"Users"> | string | null
+  nationality?: Prisma.StringNullableFilter<"Users"> | string | null
+  address?: Prisma.StringNullableFilter<"Users"> | string | null
+  filled?: Prisma.BoolFilter<"Users"> | boolean
 }
 
 export type UsersOrderByWithRelationInput = {
@@ -282,11 +314,15 @@ export type UsersOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   position?: Prisma.SortOrderInput | Prisma.SortOrder
+  valid?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrderInput | Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  filled?: Prisma.SortOrder
 }
 
 export type UsersWhereUniqueInput = Prisma.AtLeast<{
@@ -301,10 +337,14 @@ export type UsersWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"Users"> | Date | string | null
   position?: Prisma.StringNullableFilter<"Users"> | string | null
+  valid?: Prisma.BoolFilter<"Users"> | boolean
   profile_picture?: Prisma.StringNullableFilter<"Users"> | string | null
   banner?: Prisma.StringNullableFilter<"Users"> | string | null
   salary?: Prisma.BigIntNullableFilter<"Users"> | bigint | number | null
-  password?: Prisma.StringFilter<"Users"> | string
+  password?: Prisma.StringNullableFilter<"Users"> | string | null
+  nationality?: Prisma.StringNullableFilter<"Users"> | string | null
+  address?: Prisma.StringNullableFilter<"Users"> | string | null
+  filled?: Prisma.BoolFilter<"Users"> | boolean
 }, "id" | "email">
 
 export type UsersOrderByWithAggregationInput = {
@@ -315,11 +355,15 @@ export type UsersOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   position?: Prisma.SortOrderInput | Prisma.SortOrder
+  valid?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrderInput | Prisma.SortOrder
   banner?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   salary?: Prisma.SortOrderInput | Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  filled?: Prisma.SortOrder
   _count?: Prisma.UsersCountOrderByAggregateInput
   _avg?: Prisma.UsersAvgOrderByAggregateInput
   _max?: Prisma.UsersMaxOrderByAggregateInput
@@ -338,11 +382,15 @@ export type UsersScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Users"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
   position?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
+  valid?: Prisma.BoolWithAggregatesFilter<"Users"> | boolean
   profile_picture?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   banner?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"Users"> | string
   salary?: Prisma.BigIntNullableWithAggregatesFilter<"Users"> | bigint | number | null
-  password?: Prisma.StringWithAggregatesFilter<"Users"> | string
+  password?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
+  nationality?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
+  address?: Prisma.StringNullableWithAggregatesFilter<"Users"> | string | null
+  filled?: Prisma.BoolWithAggregatesFilter<"Users"> | boolean
 }
 
 export type UsersCreateInput = {
@@ -353,11 +401,15 @@ export type UsersCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   position?: string | null
+  valid?: boolean
   profile_picture?: string | null
   banner?: string | null
   id?: string
   salary?: bigint | number | null
-  password: string
+  password?: string | null
+  nationality?: string | null
+  address?: string | null
+  filled?: boolean
 }
 
 export type UsersUncheckedCreateInput = {
@@ -368,11 +420,15 @@ export type UsersUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   position?: string | null
+  valid?: boolean
   profile_picture?: string | null
   banner?: string | null
   id?: string
   salary?: bigint | number | null
-  password: string
+  password?: string | null
+  nationality?: string | null
+  address?: string | null
+  filled?: boolean
 }
 
 export type UsersUpdateInput = {
@@ -383,11 +439,15 @@ export type UsersUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  valid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  filled?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UsersUncheckedUpdateInput = {
@@ -398,11 +458,15 @@ export type UsersUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  valid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  filled?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UsersCreateManyInput = {
@@ -413,11 +477,15 @@ export type UsersCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   position?: string | null
+  valid?: boolean
   profile_picture?: string | null
   banner?: string | null
   id?: string
   salary?: bigint | number | null
-  password: string
+  password?: string | null
+  nationality?: string | null
+  address?: string | null
+  filled?: boolean
 }
 
 export type UsersUpdateManyMutationInput = {
@@ -428,11 +496,15 @@ export type UsersUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  valid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  filled?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UsersUncheckedUpdateManyInput = {
@@ -443,11 +515,15 @@ export type UsersUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  valid?: Prisma.BoolFieldUpdateOperationsInput | boolean
   profile_picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   banner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   salary?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  filled?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UsersCountOrderByAggregateInput = {
@@ -458,11 +534,15 @@ export type UsersCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  valid?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
   salary?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  filled?: Prisma.SortOrder
 }
 
 export type UsersAvgOrderByAggregateInput = {
@@ -477,11 +557,15 @@ export type UsersMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  valid?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
   salary?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  filled?: Prisma.SortOrder
 }
 
 export type UsersMinOrderByAggregateInput = {
@@ -492,11 +576,15 @@ export type UsersMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   position?: Prisma.SortOrder
+  valid?: Prisma.SortOrder
   profile_picture?: Prisma.SortOrder
   banner?: Prisma.SortOrder
   id?: Prisma.SortOrder
   salary?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  filled?: Prisma.SortOrder
 }
 
 export type UsersSumOrderByAggregateInput = {
@@ -519,6 +607,10 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type NullableBigIntFieldUpdateOperationsInput = {
   set?: bigint | number | null
   increment?: bigint | number
@@ -537,11 +629,15 @@ export type UsersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   created_at?: boolean
   updated_at?: boolean
   position?: boolean
+  valid?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
   salary?: boolean
   password?: boolean
+  nationality?: boolean
+  address?: boolean
+  filled?: boolean
 }, ExtArgs["result"]["users"]>
 
 export type UsersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -552,11 +648,15 @@ export type UsersSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created_at?: boolean
   updated_at?: boolean
   position?: boolean
+  valid?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
   salary?: boolean
   password?: boolean
+  nationality?: boolean
+  address?: boolean
+  filled?: boolean
 }, ExtArgs["result"]["users"]>
 
 export type UsersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -567,11 +667,15 @@ export type UsersSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created_at?: boolean
   updated_at?: boolean
   position?: boolean
+  valid?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
   salary?: boolean
   password?: boolean
+  nationality?: boolean
+  address?: boolean
+  filled?: boolean
 }, ExtArgs["result"]["users"]>
 
 export type UsersSelectScalar = {
@@ -582,14 +686,18 @@ export type UsersSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   position?: boolean
+  valid?: boolean
   profile_picture?: boolean
   banner?: boolean
   id?: boolean
   salary?: boolean
   password?: boolean
+  nationality?: boolean
+  address?: boolean
+  filled?: boolean
 }
 
-export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"first_name" | "last_name" | "email" | "birth_date" | "created_at" | "updated_at" | "position" | "profile_picture" | "banner" | "id" | "salary" | "password", ExtArgs["result"]["users"]>
+export type UsersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"first_name" | "last_name" | "email" | "birth_date" | "created_at" | "updated_at" | "position" | "valid" | "profile_picture" | "banner" | "id" | "salary" | "password" | "nationality" | "address" | "filled", ExtArgs["result"]["users"]>
 
 export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Users"
@@ -602,11 +710,15 @@ export type $UsersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     created_at: Date
     updated_at: Date | null
     position: string | null
+    valid: boolean
     profile_picture: string | null
     banner: string | null
     id: string
     salary: bigint | null
-    password: string
+    password: string | null
+    nationality: string | null
+    address: string | null
+    filled: boolean
   }, ExtArgs["result"]["users"]>
   composites: {}
 }
@@ -1037,11 +1149,15 @@ export interface UsersFieldRefs {
   readonly created_at: Prisma.FieldRef<"Users", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Users", 'DateTime'>
   readonly position: Prisma.FieldRef<"Users", 'String'>
+  readonly valid: Prisma.FieldRef<"Users", 'Boolean'>
   readonly profile_picture: Prisma.FieldRef<"Users", 'String'>
   readonly banner: Prisma.FieldRef<"Users", 'String'>
   readonly id: Prisma.FieldRef<"Users", 'String'>
   readonly salary: Prisma.FieldRef<"Users", 'BigInt'>
   readonly password: Prisma.FieldRef<"Users", 'String'>
+  readonly nationality: Prisma.FieldRef<"Users", 'String'>
+  readonly address: Prisma.FieldRef<"Users", 'String'>
+  readonly filled: Prisma.FieldRef<"Users", 'Boolean'>
 }
     
 

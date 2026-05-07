@@ -16,9 +16,13 @@ model Users {
   created_at      DateTime  @default(now()) @db.Timestamptz(6)
   updated_at      DateTime? @db.Timestamp(6)
   position        String?   @default("user")
+  valid           Boolean   @default(false)
   profile_picture String?
   banner          String?
   id              String    @id @default(uuid()) @db.Uuid
   salary          BigInt?
-  password        String
+  password        String?
+  nationality     String?
+  address         String?
+  filled          Boolean   @default(false)
 }

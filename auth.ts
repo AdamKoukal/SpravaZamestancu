@@ -33,10 +33,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
 
   callbacks: {
-    authorized: async ({ auth }) => {
-      // Logged in users are authenticated, otherwise redirect to login page
-      return !!auth
-    },
+  async jwt({ token, user }) {
+    if (user) {
+      token.id = user.id
+      token.position = user.position
+    }
+    return token
+  },
+  async session({ session, token }) {
+    if (session.user&&token.id) {
+      session.user.id = token.id.toString();
+      session.user.position=token.position;
+    }
+    return session
+  },
+  authorized: async ({ auth }) => {
+    return !!auth
+  },
   },
   session:{
     strategy:"jwt"
