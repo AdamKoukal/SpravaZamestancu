@@ -14,6 +14,7 @@ export default async function page(){
   {
     redirect("/login");
   }
+  
   // else{
   //   redirect("/profile/"+session.user.id);
   // }
