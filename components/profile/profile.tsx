@@ -105,7 +105,7 @@ export default function Profile({props}:any)
             
             
             <img className="object-cover pointer-events-none w-55 h-55 mt-[-50%] rounded-full" src={URLcheck(profile_picture)} alt="" />
-            {(props.id==session?.user?.id||session?.user?.position=="HR"&&editing==true)&&(
+            {((props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true)&&(
         
             <input onChange={(e)=>{setProfilePicture(e.target.files[0])}}  className="rounded-full cursor-pointer w-55 h-55 top-[-110] absolute" type="file" name="" id="" />
             )
@@ -115,7 +115,7 @@ export default function Profile({props}:any)
         </div>
         <h1 className="ml-80 mt-[-1.5em] text-white text-3xl">{props.first_name+" "+props.last_name}</h1>
 
-        {(props.id==session?.user?.id||props.id==session?.user?.id||session?.user?.position=="HR")&&(
+        {((props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true)&&(
         <div className="text-right mt-[-2em] mr-2.5">
             {(props.id==session?.user?.id||session?.user?.position=="HR"&&editing==true)&&(
         
