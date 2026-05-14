@@ -115,7 +115,7 @@ export default function Profile({props}:any)
         </div>
         <h1 className="ml-80 mt-[-1.5em] text-white text-3xl">{props.first_name+" "+props.last_name}</h1>
 
-        {(props.id==session?.user?.id)||(props.id==session?.user?.id||session?.user?.position=="HR")&&(
+        {(props.id==session?.user?.id)||(props.id==session?.user?.id)||(props.id==session?.user?.id||session?.user?.position=="HR")&&(
         <div className="text-right mt-[-2em] mr-2.5">
             {(session?.user?.position=="HR"&&editing==true)&&(
         
