@@ -115,9 +115,9 @@ export default function Profile({props}:any)
         </div>
         <h1 className="ml-80 mt-[-1.5em] text-white text-3xl">{props.first_name+" "+props.last_name}</h1>
 
-        {((props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true)&&(
+        {((props.id==session?.user?.id||session?.user?.position=="HR"))&&(
         <div className="text-right mt-[-2em] mr-2.5">
-            {(props.id==session?.user?.id||session?.user?.position=="HR"&&editing==true)&&(
+            {((props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true)&&(
         
             <input onChange={(e)=>{setBanner(e.target.files[0])}}  className="cursor-pointer px-2 rounded-lg text-white text-lg  border-4 border-white mr-2 w-58" type="file" name="" id="" />
             )
