@@ -17,8 +17,8 @@ model Users {
   updated_at      DateTime? @db.Timestamp(6)
   position        String?   @default("user")
   valid           Boolean   @default(false)
-  profile_picture String?
-  banner          String?
+  profile_picture String?   @default("https://cdn-icons-png.flaticon.com/512/12225/12225935.png")
+  banner          String?   @default("https://www.prosci.com/hubfs/worldwide-hero-banner-1920x700%20(1)-1.webp")
   id              String    @id @default(uuid()) @db.Uuid
   salary          BigInt?
   password        String?

@@ -4,6 +4,9 @@ import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import updateUser from "@/models/updateUser";
 import { redirect } from "next/navigation"
+import uploadBanner from "@/models/uploadBanner";
+import URLcheck from "@/models/URLcheck";
+import uploadProfilePicture from "@/models/uploadProfilePicture";
 type ProfileProps = {
   first_name: string;
   last_name:string;
@@ -27,7 +30,10 @@ export default function Profile({props}:any)
     const [email, setEmail]=useState(props.email)
     const [birth_date, setDateOfBirth]=useState(props.birth_date);
     const [salary, setSalary]=useState(props.salary);
-    const [postiion, setPosition]=useState(props.position);
+    const [position, setPosition]=useState(props.position);
+    const [banner, setBanner]=useState(props.banner);
+    const [profile_picture, setProfilePicture]=useState(props.profile_picture);
+    
     
     useEffect(() => {
         
@@ -40,7 +46,15 @@ export default function Profile({props}:any)
     async function update()
     {
 
-        const user={valid:valid,first_name:first_name,last_name:last_name,email:email,birth_date:new Date(birth_date),salary:salary}
+        const user={valid:valid,first_name:first_name,last_name:last_name,email:email,birth_date:new Date(birth_date),salary:salary,banner:await uploadBanner(banner),profile_picture:await uploadProfilePicture(profile_picture)}
+        if(typeof banner ==="string")
+        {
+            user.banner=banner;
+        }
+        if(typeof profile_picture ==="string")
+        {
+            user.profile_picture=profile_picture;
+        }
         if(await updateUser(props.id,user))
         {
             setEditing(false);
@@ -67,8 +81,11 @@ export default function Profile({props}:any)
         setEmail(props.email);
         setEmail(props.email);
         setDateOfBirth(props.birth_date);
+        setBanner(props.banner);
+        setProfilePicture(props.profile_picture);
     }
 
+    
 
     return(
     
@@ -82,19 +99,35 @@ export default function Profile({props}:any)
         :   
             <h4 className="absolute rounded-lg p-1 m-3 bg-red-500 text-white ">Waiting</h4>
         }
-        <img className="w-full h-96 pt-1 px-1 rounded-2xl object-cover" src="https://www.prosci.com/hubfs/worldwide-hero-banner-1920x700%20(1)-1.webp" alt="" />
+        <img className="w-full h-96 pt-1 px-1 rounded-2xl object-cover" src={URLcheck(banner)} alt="" />
 
         <div className="ml-20 absolute">
-            <img className=" w-55 mt-[-50%]" src="https://cdn-icons-png.flaticon.com/512/12225/12225935.png" alt="" />
+            
+            
+            <img className="object-cover pointer-events-none w-55 h-55 mt-[-50%] rounded-full" src={URLcheck(profile_picture)} alt="" />
+            {(session?.user?.position=="HR"&&editing==true)&&(
+        
+            <input onChange={(e)=>{setProfilePicture(e.target.files[0])}}  className="rounded-full cursor-pointer w-55 h-55 top-[-110] absolute" type="file" name="" id="" />
+            )
+            }
+            
             
         </div>
         <h1 className="ml-80 mt-[-1.5em] text-white text-3xl">{props.first_name+" "+props.last_name}</h1>
 
         {(props.id==session?.user?.id||session?.user?.position=="HR")&&(
         <div className="text-right mt-[-2em] mr-2.5">
+            {(session?.user?.position=="HR"&&editing==true)&&(
+        
+            <input onChange={(e)=>{setBanner(e.target.files[0])}}  className="cursor-pointer px-2 rounded-lg text-white text-lg  border-4 border-white mr-2 w-58" type="file" name="" id="" />
+            )
+            }
             <button onClick={()=>{setEditing(!editing)}} className="cursor-pointer px-2 rounded-lg text-white text-lg  border-4 border-white">Edit Profile</button>
+            
         </div>)
         }
+        
+        
         
     </div>
     {session?.user?.position=="HR"&&editing==true ?

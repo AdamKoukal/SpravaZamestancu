@@ -2,7 +2,7 @@
 
 import prisma from "./prisma";
    
-export default async function getUserById(toFindId:string) 
+export default async function getUserById(toFindId:any) 
 {
     const user= await prisma.users.findUnique({
         where: 

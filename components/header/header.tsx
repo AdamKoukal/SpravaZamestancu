@@ -18,7 +18,7 @@ export default async function Header(){
                     </div>
                 </div>
                 <div className="inline mx-20">
-                    <a href="/profile"><img className="inline object-cover h-15 w-15 rounded-full" src="https://nasetema.cz/wp-content/uploads/2025/05/vesmir.webp" alt="" /></a>
+                    <a href="/profile"><img className="inline object-cover h-15 w-15 rounded-full" src={session?.user?.profile_picture} alt="" /></a>
                     <h4 className="inline">{session?.user?.email}</h4>
                     <form className="inline"action={async ()=> 
                     {

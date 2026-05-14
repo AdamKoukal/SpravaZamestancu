@@ -23,7 +23,7 @@ export default async function page(){
   return (
     <>
     <Profile
-    props={await getUserById(session.user.id)}/>
+    props={await getUserById(session.user?.id)}/>
     </>
   )
 }

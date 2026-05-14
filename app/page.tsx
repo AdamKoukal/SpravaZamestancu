@@ -1,6 +1,6 @@
 
 import { SessionProvider } from "next-auth/react";
-import Register from "../components/register/register";
+import Login from "@/components/login/login";
 
 
 
@@ -9,7 +9,7 @@ export default function Home()
 
   return (
     <>
-          <Register/>
+          <Login/>
     </>
   );
 }

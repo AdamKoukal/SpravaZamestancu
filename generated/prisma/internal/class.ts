@@ -17,10 +17,10 @@ import type * as Prisma from "./prismaNamespace"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.7.0",
-  "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
+  "clientVersion": "7.8.0",
+  "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel Users {\n  first_name      String\n  last_name       String\n  email           String    @unique\n  birth_date      DateTime  @db.Date\n  created_at      DateTime  @default(now()) @db.Timestamptz(6)\n  updated_at      DateTime? @db.Timestamp(6)\n  position        String?   @default(\"user\")\n  valid           Boolean   @default(false)\n  profile_picture String?\n  banner          String?\n  id              String    @id @default(uuid()) @db.Uuid\n  salary          BigInt?\n  password        String?\n  nationality     String?\n  address         String?\n  filled          Boolean   @default(false)\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.\nmodel Users {\n  first_name      String\n  last_name       String\n  email           String    @unique\n  birth_date      DateTime  @db.Date\n  created_at      DateTime  @default(now()) @db.Timestamptz(6)\n  updated_at      DateTime? @db.Timestamp(6)\n  position        String?   @default(\"user\")\n  valid           Boolean   @default(false)\n  profile_picture String?   @default(\"https://cdn-icons-png.flaticon.com/512/12225/12225935.png\")\n  banner          String?   @default(\"https://www.prosci.com/hubfs/worldwide-hero-banner-1920x700%20(1)-1.webp\")\n  id              String    @id @default(uuid()) @db.Uuid\n  salary          BigInt?\n  password        String?\n  nationality     String?\n  address         String?\n  filled          Boolean   @default(false)\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -180,7 +180,7 @@ export interface PrismaClient<
    * 
    * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => runtime.Types.Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<R>
 
