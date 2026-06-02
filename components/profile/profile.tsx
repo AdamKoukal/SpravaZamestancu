@@ -55,6 +55,7 @@ export default function Profile({props}:any)
         {
             user.profile_picture=profile_picture;
         }
+
         if(await updateUser(props.id,user))
         {
             setEditing(false);
@@ -160,7 +161,15 @@ export default function Profile({props}:any)
     <h2 className="ml-20 mt-3 text-2xl">Last Name: {props.last_name}</h2> 
     }
 
-    {props.position=="HR"&&editing==true ?
+    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+    <div>
+        <label htmlFor="first_name" className="ml-20 text-2xl">Email: </label>
+        <input onChange={(e)=>setEmail(e.target.value)} id="email" className="text-2xl mt-3 border-2" defaultValue={props.email}/>
+    </div>:
+    <h2 className="ml-20 mt-3 text-2xl">Email: {props.email}</h2> 
+    }
+
+    {session?.user?.position=="HR"&&editing==true ?
     <div>
         <label htmlFor="salary" className="ml-20 text-2xl">Salary: </label>
         <input onChange={(e)=>setSalary(e.target.value)} id="salary" className="text-2xl mt-1 border-2" defaultValue={props.salary}/>
@@ -168,7 +177,7 @@ export default function Profile({props}:any)
     <h2 className="ml-20 mt-3 text-2xl">Salary: {props.salary}</h2>
     }
     
-    {props.position=="HR"&&editing==true ?
+    {session?.user?.position=="HR"&&editing==true ?
     <div>
         <label htmlFor="position" className="ml-20 text-2xl">Position: </label>
         <input onChange={(e)=>setPosition(e.target.value)} id="position" className="text-2xl mt-3 border-2"  defaultValue={props.position}/>
@@ -176,17 +185,17 @@ export default function Profile({props}:any)
     <h2 className="ml-20 mt-3 text-2xl">Position: {props.position}</h2>
     }
 
-    {props.id==session?.user?.id&&editing==true ?
+    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
     <div>
         <label htmlFor="birth_date" className="ml-20 text-2xl">Day Of Birth: </label>
-        <input type="date" onChange={(e)=>setDateOfBirth(e.target.value)} id="birth_date" className="text-2xl mt-3 border-2" defaultValue={new Date(props.birth_date).toISOString().split("T")[0]}/>
+        <input type="date" onChange={(e)=>setDateOfBirth(e.target.value)} id="birth_date" className="cursor-text text-2xl mt-3 border-2" defaultValue={new Date(props.birth_date).toISOString().split("T")[0]}/>
     </div>:
     <h2 className="ml-20 mt-3 text-2xl">Day Of Birth: {props.birth_date.toLocaleDateString("cs-CZ")}</h2>
     }
     {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
     <div className="mt-3 ml-20">
-        <button onClick={()=>update()} className="px-2 rounded-lg text-black text-lg  border-4 border-black">Update Profile</button>
-        <button onClick={()=>cancelUpdate()} className="px-2 rounded-lg text-black text-lg  border-4 border-black">Cancel</button>
+        <button onClick={()=>update()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Update Profile</button>
+        <button onClick={()=>cancelUpdate()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Cancel</button>
     </div>
     :
     <></>

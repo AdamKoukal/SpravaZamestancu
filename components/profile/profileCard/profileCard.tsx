@@ -23,7 +23,7 @@ export default function ProfileCard({props}:any)
         <a href={"../profile/"+props.id}>
             <img className="w-full rounded-lg object-cover h-40 "src={props.banner} alt="" />
             <div className="absolute">
-            <img className="rounded-full ml-5 w-25 mt-[-50%]" src={props.profile_picture} alt="" />
+            <img className="rounded-full ml-5 h-25 w-25 mt-[-50%]" src={props.profile_picture} alt="" />
             
             </div>
         </a>

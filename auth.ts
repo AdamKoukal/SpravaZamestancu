@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
 
   callbacks: {
-  async jwt({ token, user }) {
+  async jwt({ token, user }:any) {
     if (user) {
       token.id = user.id
       token.position = user.position
@@ -41,7 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }
     return token
   },
-  async session({ session, token }) {
+  async session({ session, token }:any) {
     if (session.user&&token.id) {
       session.user.id = token.id.toString();
       session.user.position=token.position;

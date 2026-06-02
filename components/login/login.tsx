@@ -20,7 +20,9 @@ export default async function Login()
         <form 
         action={async (formData) => {
                 "use server"
+                
                 await signIn("credentials", formData)
+                
                 }}  
          >
             <label className="inline text-lg font-medium" htmlFor="emailInput">Email</label>

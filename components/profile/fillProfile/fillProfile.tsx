@@ -29,7 +29,7 @@ export default async function FillProfile({props}:any)
                 "use server"
                 
                 const user={valid:props.valid,first_name:formData.get("first_name"),last_name:formData.get("last_name"),
-                    email:formData.get("email"),birth_date:new Date(formData.get("birth_date")).toISOString(),salary:props.salary,
+                    email:formData.get("email"),password:formData.get("password"),birth_date:new Date(formData.get("birth_date")).toISOString(),salary:props.salary,
                     filled:true,address:formData.get("address"),nationality:formData.get("nationality")};
 
                 console.log(user);
@@ -50,11 +50,21 @@ export default async function FillProfile({props}:any)
                     <input name="last_name" defaultValue={props.last_name} className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" type="text" />
                 </div>
 
-                <div className="block">
+                <div className="block col-span-2">
                     <label className="inline text-lg font-medium" htmlFor="emailInput">Email</label>
                     <input name="email" defaultValue={props.email} className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" type="email"/>
                 </div>
-                
+
+                <div className="block">
+                    <label className="inline text-lg font-medium" htmlFor="passwordInput">Password</label>
+                    <input name="password" defaultValue={props.address} className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" id="passwordInput" type="text"/>
+                </div>
+
+                <div className="block">
+                    <label className="inline text-lg font-medium" htmlFor="confirmPasswordInput">Confirm Password</label>
+                    <input name="confirmPassword" defaultValue={props.address} className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" id="confirmPasswordInput" type="text"/>
+                </div>
+
                 <div className="block">
                     <label className="inline text-lg font-medium" htmlFor="dateOfBirthInput">Date Of Birth</label>
                     <input name="birth_date" defaultValue={new Date(props.birth_date).toISOString().split("T")[0]} className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" id="dateOfBirthInput" type="date"/>

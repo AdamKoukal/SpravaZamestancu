@@ -1,9 +1,11 @@
 "use server"
 import { auth, signOut } from "@/auth";
 import { useSession } from "next-auth/react";
+import getUserById from "@/models/getUserById";
 
 export default async function Header(){
     const session  = await auth();
+    const user=await getUserById(session?.user.id);
     return(
         <>
         {session?.user ?
@@ -18,8 +20,8 @@ export default async function Header(){
                     </div>
                 </div>
                 <div className="inline mx-20">
-                    <a href="/profile"><img className="inline object-cover h-15 w-15 rounded-full" src={session?.user?.profile_picture} alt="" /></a>
-                    <h4 className="inline">{session?.user?.email}</h4>
+                    <a href="/profile"><img className="inline object-cover h-15 w-15 rounded-full" src={user?.profile_picture} alt="" /></a>
+                    <h4 className="inline">{user?.email}</h4>
                     <form className="inline"action={async ()=> 
                     {
                         "use server"
