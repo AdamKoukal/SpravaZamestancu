@@ -1,17 +1,23 @@
 "use client"
 
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import createUser from '@/models/createUser';
+import { redirect } from 'next/navigation';
+
 
 export default function Register()
 {
-      
+    const { data: session }:any = useSession()
+
+    if(!session||session.user?.position!="HR"){
+        redirect("/profile");
+    }
+
     const [first_name, setFirstName]=useState("")
     const [last_name, setLastName]=useState("")
     const [email, setEmail]=useState("")
-    const [password, setPassword]=useState("")
-    const [confirmPassword, setConfirmPassword]=useState("")
+
     const [birth_date, setDateOfBirth]=useState("");
 
     const [link,setLink]=useState("");
@@ -60,12 +66,6 @@ export default function Register()
         </div>
     </div>
 
-    {/* <h1>Name: {firstName}</h1>
-    <h1>Last Name: {lastName}</h1>
-    <h1>Email: {email}</h1>
-    <h1>Password: {password}</h1>
-    <h1>Confirm password: {confirmPassword}</h1>
-    <h1>Date Of Birth: {dateOfBirth}</h1> */}
     </>
     
 }

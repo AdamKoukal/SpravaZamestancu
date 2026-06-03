@@ -1,10 +1,5 @@
-
-
-
 import { auth, signIn } from "@/auth"
 import { redirect } from "next/navigation"
-
-
 
 export default async function Login()
 {
@@ -13,18 +8,19 @@ export default async function Login()
     {
         redirect("/profile");
     }
-    return<>
+
+    return(<>
     <div className="credentialsBox flex justify-center items-center h-screen">
         <div className="border-4 border-sky-600 rounded-lg p-10">
         <h1 className="text-6xl font-medium text-center mb-10">Log in</h1>
         <form 
-        action={async (formData) => {
+            action={async (formData) => 
+                {
                 "use server"
                 
                 await signIn("credentials", formData)
-                
-                }}  
-         >
+                }}
+        >
             <label className="inline text-lg font-medium" htmlFor="emailInput">Email</label>
             <input className="block border-y-4 border-y-sky-600 rounded-lg py-1 w-100" id="emailInput" name="email" type="text"  />
 
@@ -36,6 +32,6 @@ export default async function Login()
         </form>
         </div>
     </div> 
-    </>
+    </>)
     
 }

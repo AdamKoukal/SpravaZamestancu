@@ -12,7 +12,13 @@ import prisma from "./prisma";
 }*/
 export default async function registerUser(userData:any) 
 {
-    let userDataNew={first_name:userData.first_name,last_name:userData.last_name,email:userData.email,password:userData.password,birth_date:new Date(userData.birth_date)};
+    let userDataNew={
+        first_name:userData.first_name,
+        last_name:userData.last_name,
+        email:userData.email,
+        password:userData.password,
+        birth_date:new Date(userData.birth_date)
+    };
     console.log(userData);
     const user=await prisma.users.create(
         {
