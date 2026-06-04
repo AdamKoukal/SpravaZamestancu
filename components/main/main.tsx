@@ -1,5 +1,6 @@
 "use client"
 import ProfileCard from "@/components/profile/profileCard/profileCard";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
@@ -8,7 +9,8 @@ export default function Main({profiles}:any){
     const [originalProfiles,setOriginalProfiles]=useState<any>();
     const [searchedProfiles,setSearchedProfiles]=useState<any>();
 
-    useEffect(() => {    
+    useEffect(() => {
+      
       setSearchedProfiles([...profiles]);         
       setOriginalProfiles([...profiles]);         
     }, []);

@@ -1,19 +1,30 @@
 "use client"
 
-import { useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+
 import createUser from '@/models/createUser';
 import { redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 
-export default function Register()
+export default function CreateProfile()
 {
     const { data: session }:any = useSession()
+    const { update: updateSession } = useSession();
 
-    if(!session||session.user?.position!="HR"){
-        redirect("/profile");
-    }
-
+    useEffect(() => {
+        if(!session||!session.user){
+            updateSession(); 
+        }
+        if(session?.user.position&&session?.user.position!=="HR")
+        {
+            redirect("/profile");
+        }
+        
+             
+    }, [session?.user]);
+    
+    
     const [first_name, setFirstName]=useState("")
     const [last_name, setLastName]=useState("")
     const [email, setEmail]=useState("")
@@ -28,7 +39,7 @@ export default function Register()
         
         e.preventDefault();
         const user=await createUser({first_name:first_name,last_name:last_name,email:email,birth_date:birth_date});
-        setLink("http://localhost:3000/fillProfile/"+user.id);
+        setLink("http://localhost:3000/fillProfile/"+user?.id);
         console.log(user);
         
 
