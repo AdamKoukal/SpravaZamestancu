@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials"
 import prisma from "./models/prisma";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  
   providers: [
 
     Credentials({
@@ -11,17 +12,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password:{}
       },
       authorize:async (credentials)=>{
-
+        const bcrypt:any = require('bcrypt');
         const user= await prisma.users.findUnique({
         where: 
         {
           email: credentials?.email?.toString(),
         },
         });
-
-        if(credentials?.email==user?.email&&credentials?.password==user?.password)
+        
+        if(credentials?.email==user?.email)
         {
-          return user;
+          if(await bcrypt.compare(credentials?.password, user?.password)){
+            return user;
+          }
+
+          return null;
         }
         else
         {

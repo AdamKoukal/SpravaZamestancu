@@ -28,7 +28,7 @@ export default function ProfileCard({props}:any)
             </div>
         </a>
         <h2 className="mt-[-1.5em] text-white ml-31">{props.first_name+" "+props.last_name}</h2>
-        <h3 className="ml-5 mt-10">Salary: {props.salary}</h3>
+        <h3 className="ml-5 mt-10">Email: {props.email}</h3>
         <h3 className="ml-5">Position: {props.position}</h3>        
     </div>
     

@@ -29,7 +29,7 @@ export default function Main({profiles}:any){
             let helpProfiles=[];
             for(let a of originalProfiles)
             {
-              if(a.first_name.toLowerCase().includes(e.target.value.toLowerCase())||a.last_name.toLowerCase().includes(e.target.value.toLowerCase())){
+              if((a.first_name.toLowerCase()+a.last_name.toLowerCase()).replaceAll(" ","").includes(e.target.value.toLowerCase().replaceAll(" ",""))||a.first_name.toLowerCase().includes(e.target.value.toLowerCase())||a.last_name.toLowerCase().includes(e.target.value.toLowerCase())){
                 helpProfiles.push(a)
               }
               
@@ -40,7 +40,7 @@ export default function Main({profiles}:any){
       </div>
 
       
-      <div className="grid grid-cols-4 gap-5 mt-5">
+      <div className="grid grid-cols-4 gap-2 mt-5">
         {searchedProfiles?.map((p:any, index:any) => (
           <ProfileCard props={p}/>
         ))}

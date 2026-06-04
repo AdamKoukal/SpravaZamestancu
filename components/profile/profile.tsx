@@ -215,8 +215,11 @@ export default function Profile({props}:any)
     <div>
         <label htmlFor="salary" className=" text-2xl">Salary: </label>
         <input onChange={(e)=>setSalary(e.target.value)} id="salary" className="text-2xl mt-1 border-2" defaultValue={props.salary}/>
-    </div>:
+    </div>
+    :(session?.user?.position=="HR"||session?.user?.id==profileId)?
     <h2 className=" mt-3 text-2xl">Salary: {props.salary}</h2>
+    :
+    <></>
     }
     
     {session?.user?.position=="HR"&&editing==true ?
