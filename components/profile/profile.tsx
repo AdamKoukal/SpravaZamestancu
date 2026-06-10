@@ -263,7 +263,7 @@ export default function Profile({props,interests}:{props:any,interests:Interests
     </div>
     <div className="w-full max-h-full min-h-0 border-4 border-sky-600 mx-1 mb-1 py-20 px-20 inline-block rounded-lg overflow-y-scroll">
             <h2 className="text-3xl font-semibold mb-5 mt-6 inline-block">Interests</h2>
-            {!addingInterest&&(loggedUserId==profileId||loggedUserId.position=="HR")&&(
+            {!addingInterest&&(loggedUserId==profileId||loggedUserPosition=="HR")&&(
                 <button 
             className="mt-6 cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black float-right"
             onClick={()=>{
@@ -274,7 +274,7 @@ export default function Profile({props,interests}:{props:any,interests:Interests
             >Edit Interests</button>
             )}
             
-            {addingInterest&&(loggedUserId==profileId||loggedUserId.position=="HR") ? 
+            {addingInterest&&(loggedUserId==profileId||loggedUserPosition=="HR") ? 
             <>
                 <div>
                 <label className="text-2xl mr-2" htmlFor="">Title:</label>
