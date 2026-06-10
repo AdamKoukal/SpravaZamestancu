@@ -7,7 +7,9 @@ import { redirect } from "next/navigation";
 
 export default async function FillProfile({props}:any)
 {
-
+        if(props.filled){
+            redirect("http://localhost:3000/profile/"+props.id);
+        }
         async function handleSubmit(e:any)
         {
             
@@ -30,15 +32,13 @@ export default async function FillProfile({props}:any)
                 
                 const user={valid:props.valid,first_name:formData.get("first_name"),last_name:formData.get("last_name"),
                     email:formData.get("email"),password:formData.get("password"),birth_date:new Date(formData.get("birth_date")).toISOString(),salary:props.salary,
-                    filled:true,address:formData.get("address"),nationality:formData.get("nationality")};
+                    filled:false,address:formData.get("address"),nationality:formData.get("nationality")};
 
-                console.log(user);
                 await updateUser(props.id,user);
-                
-                redirect("http://localhost:3000/fillProfile/"+props.id);
+                //redirect("http://localhost:3000/profile/"+props.id);
                 
 
-            }} method="POST">
+            }}>
                 <div className="grid grid-cols-2 gap-2">
                 <div className="block">
                     <label className="inline text-lg font-medium" htmlFor="firstNameInput">First Name</label>

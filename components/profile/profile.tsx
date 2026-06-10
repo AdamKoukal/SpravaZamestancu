@@ -7,6 +7,10 @@ import { redirect } from "next/navigation"
 import uploadBanner from "@/models/uploadBanner";
 import URLcheck from "@/models/URLcheck";
 import uploadProfilePicture from "@/models/uploadProfilePicture";
+import { Interests } from "@/generated/prisma/client";
+import InterestCard from "./interestCard/interestCard";
+import addInterest from "@/models/addInterest";
+
 type ProfileProps = {
   first_name: string;
   last_name:string;
@@ -18,23 +22,21 @@ type ProfileProps = {
  
 
  
-export default function Profile({props}:any)
+export default function Profile({props,interests}:{props:any,interests:Interests[]})
 {
     const { update: updateSession } = useSession();
 
     const { data: session }:any = useSession()
+
     
-    let profileId;
+    let profileId:string;
     let loggedUserId;
     let loggedUserPosition;
     
     useEffect(() => {
         
-        
-        updateSession();
-        
-        
-         
+        updateSession();     
+               
     }, []);
     
     if(session){
@@ -42,7 +44,6 @@ export default function Profile({props}:any)
         loggedUserId=session.user?.id;
         loggedUserPosition=session.user?.position;
     }
-    
     
 
 
@@ -57,11 +58,19 @@ export default function Profile({props}:any)
     const [banner, setBanner]=useState(props.banner);
     const [profile_picture, setProfilePicture]=useState(props.profile_picture);
 
+    const [addingInterest,setaddingInterest]=useState(false);
+    const [interestTitle,setInterestTitle]=useState("");
+    const [interestDescription,setInterestDescription]=useState("");
+
+
+
     
     
     
     
-    
+    async function addInterestOnClick(){
+        await addInterest({id:"",user_id:props.id,title:interestTitle,description:interestDescription});
+    }
     async function update()
     {
 
@@ -170,84 +179,133 @@ export default function Profile({props}:any)
         
         
     </div>
-    <div className="mt-30">
-    <div className="border-4 border-sky-600 mx-1 mb-1 py-20 px-20 inline-block rounded-lg">
-    <h2 className="text-3xl font-semibold mb-5">Basic Information</h2>
-    {loggedUserPosition=="HR"&&editing==true ?
-    <div>
-        <label htmlFor="valid" className="text-2xl">Valid: </label>
-        <select onChange={(e)=>setValid(e.target.value=="true")} name="valid" id="valid" defaultValue={props.valid.toString()} className="text-2xl border-2">
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-        {/* <input onChange={(e)=>setValid(e.target.value)} id="valid" className="mt-30 text-2xl border-2" defaultValue={props.valid}/> */}
-    </div>
-    :
-    <h2 className=" text-2xl">Valid: {props.valid.toString()}</h2> 
-    }
+    <div className="mt-2 flex">
+    <div className="min-w-[30%] border-4 border-sky-600 mx-1 mb-1 py-20 px-20 inline-block rounded-lg">
+        <h2 className="text-3xl font-semibold mt-6 mb-5">Basic Information</h2>
+        {loggedUserPosition=="HR"&&editing==true ?
+        <div>
+            <label htmlFor="valid" className="text-2xl">Valid: </label>
+            <select onChange={(e)=>setValid(e.target.value=="true")} name="valid" id="valid" defaultValue={props.valid.toString()} className="text-2xl border-2">
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+        :
+        <h2 className=" text-2xl">Valid: {props.valid.toString()}</h2> 
+        }
 
-    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
-    <div>
-        <label htmlFor="first_name" className=" mt-30 text-2xl">First Name: </label>
-        <input onChange={(e)=>setFirstName(e.target.value)} id="first_name" className="mt-3 text-2xl border-2" defaultValue={props.first_name}/>
-    </div>
-    :
-    <h2 className=" mt-3 text-2xl">First Name: {props.first_name}</h2> 
-    }
+        {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+        <div>
+            <label htmlFor="first_name" className=" mt-30 text-2xl">First Name: </label>
+            <input onChange={(e)=>setFirstName(e.target.value)} id="first_name" className="mt-3 text-2xl border-2" defaultValue={props.first_name}/>
+        </div>
+        :
+        <h2 className=" mt-3 text-2xl">First Name: {props.first_name}</h2> 
+        }
 
-    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
-    <div>
-        <label htmlFor="first_name" className=" text-2xl">Last Name: </label>
-        <input onChange={(e)=>setLastName(e.target.value)} id="first_name" className="text-2xl mt-3 border-2" defaultValue={props.last_name}/>
-    </div>:
-    <h2 className=" mt-3 text-2xl">Last Name: {props.last_name}</h2> 
-    }
+        {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+        <div>
+            <label htmlFor="first_name" className=" text-2xl">Last Name: </label>
+            <input onChange={(e)=>setLastName(e.target.value)} id="first_name" className="text-2xl mt-3 border-2" defaultValue={props.last_name}/>
+        </div>
+        :
+        <h2 className=" mt-3 text-2xl">Last Name: {props.last_name}</h2> 
+        }
 
-    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
-    <div>
-        <label htmlFor="first_name" className=" text-2xl">Email: </label>
-        <input onChange={(e)=>setEmail(e.target.value)} id="email" className="text-2xl mt-3 border-2" defaultValue={props.email}/>
-    </div>:
-    <h2 className=" mt-3 text-2xl">Email: {props.email}</h2> 
-    }
+        {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+        <div>
+            <label htmlFor="first_name" className=" text-2xl">Email: </label>
+            <input onChange={(e)=>setEmail(e.target.value)} id="email" className="text-2xl mt-3 border-2" defaultValue={props.email}/>
+        </div>
+        :
+        <h2 className=" mt-3 text-2xl">Email: {props.email}</h2> 
+        }
 
-    {session?.user?.position=="HR"&&editing==true ?
-    <div>
-        <label htmlFor="salary" className=" text-2xl">Salary: </label>
-        <input onChange={(e)=>setSalary(e.target.value)} id="salary" className="text-2xl mt-1 border-2" defaultValue={props.salary}/>
-    </div>
-    :(session?.user?.position=="HR"||session?.user?.id==profileId)?
-    <h2 className=" mt-3 text-2xl">Salary: {props.salary}</h2>
+        {session?.user?.position=="HR"&&editing==true ?
+        <div>
+            <label htmlFor="salary" className=" text-2xl">Salary: </label>
+            <input onChange={(e)=>setSalary(e.target.value)} id="salary" className="text-2xl mt-1 border-2" defaultValue={props.salary}/>
+        </div>
+        :(session?.user?.position=="HR"||session?.user?.id==profileId)?
+        <h2 className=" mt-3 text-2xl">Salary: {props.salary}</h2>
+        :
+            <></>
+        }
+    
+        {session?.user?.position=="HR"&&editing==true ?
+        <div>
+            <label htmlFor="position" className=" text-2xl">Position: </label>
+            <input onChange={(e)=>setPosition(e.target.value)} id="position" className="text-2xl mt-3 border-2"  defaultValue={props.position}/>
+        </div>
+        :
+        <h2 className=" mt-3 text-2xl">Position: {props.position}</h2>
+        }
+
+        {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+        <div>
+            <label htmlFor="birth_date" className=" text-2xl">Day Of Birth: </label>
+            <input type="date" onChange={(e)=>setDateOfBirth(e.target.value)} id="birth_date" className="cursor-text text-2xl mt-3 border-2" defaultValue={new Date(props.birth_date).toISOString().split("T")[0]}/>
+        </div>
+        :
+        <h2 className=" mt-3 text-2xl">Day Of Birth: {props.birth_date.toLocaleDateString("cs-CZ")}</h2>
+        }
+
+        {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
+        <div className="mt-3 ">
+            <button onClick={()=>update()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Update Profile</button>
+            <button onClick={()=>cancelUpdate()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Cancel</button>
+        </div>
+    
     :
     <></>
     }
     
-    {session?.user?.position=="HR"&&editing==true ?
-    <div>
-        <label htmlFor="position" className=" text-2xl">Position: </label>
-        <input onChange={(e)=>setPosition(e.target.value)} id="position" className="text-2xl mt-3 border-2"  defaultValue={props.position}/>
-    </div>:
-    <h2 className=" mt-3 text-2xl">Position: {props.position}</h2>
-    }
-
-    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
-    <div>
-        <label htmlFor="birth_date" className=" text-2xl">Day Of Birth: </label>
-        <input type="date" onChange={(e)=>setDateOfBirth(e.target.value)} id="birth_date" className="cursor-text text-2xl mt-3 border-2" defaultValue={new Date(props.birth_date).toISOString().split("T")[0]}/>
-    </div>:
-    <h2 className=" mt-3 text-2xl">Day Of Birth: {props.birth_date.toLocaleDateString("cs-CZ")}</h2>
-    }
-    {(props.id==session?.user?.id||session?.user?.position=="HR")&&editing==true ?
-    <div className="mt-3 ">
-        <button onClick={()=>update()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Update Profile</button>
-        <button onClick={()=>cancelUpdate()} className="cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black">Cancel</button>
+    </div>
+    <div className="w-full max-h-full min-h-0 border-4 border-sky-600 mx-1 mb-1 py-20 px-20 inline-block rounded-lg overflow-y-scroll">
+            <h2 className="text-3xl font-semibold mb-5 mt-6 inline-block">Interests</h2>
+            {!addingInterest&&(loggedUserId==profileId||loggedUserId.position=="HR")&&(
+                <button 
+            className="mt-6 cursor-pointer px-2 rounded-lg text-black text-lg  border-4 border-black float-right"
+            onClick={()=>{
+                setaddingInterest(true);
+                //addInterestOnClick();
+                //redirect("/profile/"+profileId)
+            }}
+            >Edit Interests</button>
+            )}
+            
+            {addingInterest&&(loggedUserId==profileId||loggedUserId.position=="HR") ? 
+            <>
+                <div>
+                <label className="text-2xl mr-2" htmlFor="">Title:</label>
+                <input onChange={e=>setInterestTitle(e.target.value)} className="text-2xl mt-3 mr-2 border-2" type="text" />
+                <label className=" text-2xl mr-2" htmlFor="">Description:</label>
+                <input onChange={e=>setInterestDescription(e.target.value)} className="text-2xl mt-3 border-2" type="text" />
+                <div className="mt-2">
+                    <button 
+                    onClick={()=>{
+                        addInterestOnClick();
+                        redirect("/profile/"+profileId)
+                    }}
+                    className="cursor-pointer mr-2 bg-emerald-500 inline-block rounded-xl border-black border-4 px-2 text-lg">Add Interest</button>
+                    <button 
+                    onClick={()=>{
+                    setaddingInterest(false);
+                    }}
+                    className="cursor-pointer inline-block rounded-xl border-black border-4 px-2 text-lg">Cancel</button>
+                </div>
+                </div>
+                </>
+            :
+            <>
+            </>}    
+            
+            {interests?.map((p:Interests, index:any) => (
+                      <InterestCard interest={p}/>
+            ))}
+    </div>
     </div>
     
-    :
-    <></>
-    }
-    </div>
-    </div>
    
     
     

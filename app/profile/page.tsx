@@ -4,8 +4,7 @@ import { auth } from '@/auth'
 import Profile from '../../components/profile/profile'
 import { redirect } from 'next/navigation';
 import getUserById from '@/models/getUserById';
-
-
+import getInterestsByUserId from '@/models/getInterestsByUserId';
 
 export default async function page(){
   
@@ -18,12 +17,15 @@ export default async function page(){
   // else{
   //   redirect("/profile/"+session.user.id);
   // }
-
+  const user=await getUserById(session.user?.id);
+  const interests=await getInterestsByUserId(session.user?.id);
 
   return (
     <>
     <Profile
-    props={await getUserById(session.user?.id)}/>
+    props={user}
+    interests={interests}
+    />
     </>
   )
 }

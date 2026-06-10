@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Users: 'Users'
+  Users: 'Users',
+  Interests: 'Interests'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users"
+    modelProps: "users" | "interests"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -478,6 +479,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Interests: {
+      payload: Prisma.$InterestsPayload<ExtArgs>
+      fields: Prisma.InterestsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.InterestsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.InterestsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        findFirst: {
+          args: Prisma.InterestsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.InterestsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        findMany: {
+          args: Prisma.InterestsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>[]
+        }
+        create: {
+          args: Prisma.InterestsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        createMany: {
+          args: Prisma.InterestsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.InterestsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>[]
+        }
+        delete: {
+          args: Prisma.InterestsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        update: {
+          args: Prisma.InterestsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        deleteMany: {
+          args: Prisma.InterestsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.InterestsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.InterestsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>[]
+        }
+        upsert: {
+          args: Prisma.InterestsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$InterestsPayload>
+        }
+        aggregate: {
+          args: Prisma.InterestsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateInterests>
+        }
+        groupBy: {
+          args: Prisma.InterestsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InterestsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.InterestsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.InterestsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -537,6 +612,16 @@ export const UsersScalarFieldEnum = {
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const InterestsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  user_id: 'user_id',
+  description: 'description'
+} as const
+
+export type InterestsScalarFieldEnum = (typeof InterestsScalarFieldEnum)[keyof typeof InterestsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -756,6 +841,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   users?: Prisma.UsersOmit
+  interests?: Prisma.InterestsOmit
 }
 
 /* Types for Logging */

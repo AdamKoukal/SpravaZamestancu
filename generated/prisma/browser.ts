@@ -22,3 +22,8 @@ export * from './enums';
  * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
  */
 export type Users = Prisma.UsersModel
+/**
+ * Model Interests
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type Interests = Prisma.InterestsModel
