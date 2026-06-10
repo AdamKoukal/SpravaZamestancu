@@ -39,7 +39,7 @@ export default function CreateProfile()
         
         e.preventDefault();
         const user=await createUser({first_name:first_name,last_name:last_name,email:email,birth_date:birth_date});
-        setLink("http://localhost:3000/fillProfile/"+user?.id);
+        setLink("https://spravazamestnancu.vercel.app/fillProfile/"+user?.id);
         console.log(user);
         
 
